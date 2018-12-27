@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "parcel": "mkdir dist; cp -r sound img/screenshot.png dist; parcel index.html index.js",
-    "build": "parcel build --public-url ./ index.html && cp icp -r sound img/screenshot.png dist/"
+    "build": "parcel build --public-url ./ index.html && cp -r sound img/screenshot.png dist/"
   },
   "author": "",
   "license": "UNLICENSED",
