@@ -71,8 +71,6 @@ class Sender {
 document.addEventListener('DOMContentLoaded', async () => {
     const button = document.getElementById('button');
     const push = button.getElementsByClassName('push')[0];
-    const pushFace = push.children[0];
-    // const audios = Array.from(document.getElementById('audio-container').children);
     const pops = Array.from(document.getElementById('akane-pops').children);
     const body = document.getElementsByTagName('body')[0];
     const globalCounter = document.getElementById('global-counter');
@@ -145,10 +143,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const buttonDarken = () => {
-        pushFace.style.fill = '#ccc';
+        push.style.fill = '#ccc';
     }
     const buttonLighten = () => {
-        pushFace.style.fill = '';
+        push.style.fill = '';
     }
     
     push.addEventListener('touchstart', (e) => {
