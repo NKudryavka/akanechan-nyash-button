@@ -1,0 +1,25 @@
+{
+  "name": "akanechan-nyash-button",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "parcel": "mkdir dist; cp -r sound img/screenshot.png dist; parcel index.html index.js",
+    "build": "parcel build --public-url ./ index.html && cp icp -r sound img/screenshot.png dist/"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "animejs": "^2.2.0",
+    "buffer-loader": "^0.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-runtime": "^6.26.0",
+    "node-sass": "^4.11.0",
+    "parcel": "^1.11.0"
+  }
+}
