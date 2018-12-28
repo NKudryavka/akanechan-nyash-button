@@ -1,7 +1,7 @@
 import anime from 'animejs';
 
 const AKANE = encodeURIComponent('茜ちゃんかわいい！！！！！');
-const TOKEN = encodeURIComponent(btoa(Math.random));
+const TOKEN = encodeURIComponent(btoa(Math.random)).slice(24);
 const API_URL = 'https://script.google.com/macros/s/AKfycbws6Yt3rB_gUau3RktvwE0Wl55BFjFBFSapmLGsZX4LSMvFFoE/exec';
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -15,6 +15,7 @@ anime.easings['gravity'] = (t) => {
 
 async function fetchSounds() {
     const sounds = [
+        'sound/maekawa.mp3',
         'sound/nyaaaa.mp3',
         'sound/nyasc.mp3',
         'sound/nyaweak.mp3',
@@ -37,7 +38,7 @@ class Sender {
         this.waitFrom = Number.MAX_SAFE_INTEGER;
         this.count = 0;
         setInterval(() => {
-            if (Date.now() - this.waitFrom > 500) {
+            if (Date.now() - this.waitFrom > 1000) {
                 this.send();
             }
         }, 100);
@@ -107,7 +108,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const pop = (Math.random() < 0.7 ? pops[0] : pops[random(pops.length)]).cloneNode();
         countUp();
         const source = audioContext.createBufferSource();
-        source.buffer = sounds[random(sounds.length)];
+        source.buffer = sounds[Math.random() < 0.99 ? random(sounds.length-1)+1 : 0];
         source.connect(audioContext.destination);
         source.start(0);
         
