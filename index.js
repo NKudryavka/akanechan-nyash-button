@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const sounds = await fetchSounds();
 
     const siteUrl = encodeURIComponent('https://nkudryavka.github.io/akanechan-nyash-button/');
-    const hashtags = 'Akanechan_Nyash_Button,' + encodeURIComponent('茜ちゃん絶対に主人公にするからね');
+    const hashtags = `Akanechan_Nyash_Button,${encodeURIComponent('茜ちゃん絶対に主人公にするからね')},${encodeURIComponent('茜ちゃん絶対に島流しにするからね')}`;
     function getTweetUrl() {
         const content = encodeURIComponent(`Akanechan Nyash Buttonで茜ちゃんを${count}回注文したよ！`);
         return `https://twitter.com/intent/tweet?text=${content}&url=${siteUrl}&hashtags=${hashtags}`;
