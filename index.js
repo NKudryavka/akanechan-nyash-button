@@ -4,29 +4,10 @@ const AKANE = encodeURIComponent('茜ちゃんかわいい！！！！！');
 const TOKEN = encodeURIComponent(btoa(Math.random)).slice(24);
 const API_URL = 'https://script.google.com/macros/s/AKfycbws6Yt3rB_gUau3RktvwE0Wl55BFjFBFSapmLGsZX4LSMvFFoE/exec';
 
-window.AudioContext = window.AudioContext || window.webkitAudioContext;
-const audioContext = new AudioContext();
-
 const gravityA = 2 + Math.sqrt(3);
 const gravityB = - 1 - Math.sqrt(3);
 anime.easings['gravity'] = (t) => {
     return gravityA * t * t + gravityB * t;
-}
-
-async function fetchSounds() {
-    const sounds = [
-        'sound/maekawa.mp3',
-        'sound/nyaaaa.mp3',
-        'sound/nyasc.mp3',
-        'sound/nyaweak.mp3',
-        'sound/unya-long.mp3',
-        'sound/unya-short.mp3',
-    ];
-    const responses = await Promise.all(sounds.map((p) => fetch(p)));
-    const buffers = await Promise.all(responses.map((r) => r.arrayBuffer()));
-    return Promise.all(buffers.map((buf) => {
-        return new Promise((resolve, reject) => audioContext.decodeAudioData(buf, resolve));
-    }));
 }
 
 function random(n) {
@@ -81,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let count = 0;
 
-    const sounds = await fetchSounds();
+    const sounds = Array.from(document.getElementById('akane-sounds').children);
 
     const siteUrl = encodeURIComponent('https://nkudryavka.github.io/akanechan-nyash-button/');
     const hashtags = `Akanechan_Nyash_Button,${encodeURIComponent('茜ちゃん絶対に主人公にするからね')},${encodeURIComponent('茜ちゃん絶対に島流しにするからね')}`;
@@ -104,13 +85,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     setInterval(refreshGlobalCount, 10*1000);
 
     function nya() {
-        audioContext.resume();
         const pop = (Math.random() < 0.7 ? pops[0] : pops[random(pops.length)]).cloneNode();
         countUp();
-        const source = audioContext.createBufferSource();
-        source.buffer = sounds[Math.random() < 0.99 ? random(sounds.length-1)+1 : 0];
-        source.connect(audioContext.destination);
-        source.start(0);
+        const sound = sounds[Math.random() < 0.99 ? random(sounds.length-1)+1 : 0].cloneNode();
+        sound.play();
         
         pop.style.position = 'absolute';
         pop.style.maxWidth = '20%';
